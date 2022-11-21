@@ -4,7 +4,7 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-06 23:42:55
+ * @LastEditTime: 2022-11-18 17:13:20
  */
 const { merge } = require('webpack-merge')
 const BaseConfig = require('./base.config')
@@ -20,18 +20,40 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = merge(BaseConfig, {
   mode: 'production',
   cache: {
-    type: 'filesystem', // 使用文件缓存
+    type: 'filesystem' // 使用文件缓存
   },
   // devtool: 'eval-source-map',
   stats: {
-    children: false, // 不输出子模块的打包信息
+    children: false // 不输出子模块的打包信息
+  },
+  externals: {
+    react: 'window.React',
+    'react-dom': 'window.ReactDOM'
   },
   module: {
     rules: [
       {
+        test: /\.[jt]sx?$/,
+        exclude: [/node_modules/, /public/, /(.|_)min\.js$/],
+        use: [
+          {
+            loader: 'thread-loader',
+            options: {
+              workers: require('os').cpus()
+            }
+          },
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              cacheDirectory: true
+            }
+          }
+        ]
+      },
+      {
         // .css 解析
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
       },
       {
         // .less 解析
@@ -42,11 +64,11 @@ module.exports = merge(BaseConfig, {
           'postcss-loader',
           {
             loader: 'less-loader',
-            options: { lessOptions: { javascriptEnabled: true } },
-          },
-        ],
-      },
-    ],
+            options: { lessOptions: { javascriptEnabled: true } }
+          }
+        ]
+      }
+    ]
   },
   optimization: {
     minimize: true,
@@ -59,23 +81,23 @@ module.exports = merge(BaseConfig, {
             warnings: false, // 删除无用代码时是否给出警告
             drop_debugger: true, // 删除所有的debugger
             drop_console: true, // 删除所有的console.*
-            pure_funcs: ['console.log'], // 删除所有的console.log
-          },
-        },
+            pure_funcs: ['console.log'] // 删除所有的console.log
+          }
+        }
       }),
-      new CssMinimizerPlugin(),
-    ],
+      new CssMinimizerPlugin()
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env': 'prod',
+      'process.env': 'prod'
     }),
     new MiniCssExtractPlugin({
       filename: 'style/[contenthash:3].[name].css?v=[contenthash]',
       chunkFilename: 'style/[contenthash:3].[id].css?v=[contenthash]',
       ignoreOrder: false,
-      linkType: 'text/css',
+      linkType: 'text/css'
     }),
     new WorkboxPlugin.GenerateSW({
       // these options encourage the ServiceWorkers to get in there fast
@@ -88,7 +110,7 @@ module.exports = merge(BaseConfig, {
         // 配置路由请求缓存
         {
           urlPattern: /.*\.js/, // 匹配文件
-          handler: 'NetworkFirst', // 网络优先
+          handler: 'NetworkFirst' // 网络优先
         },
         {
           urlPattern: /api/, // 匹配文件
@@ -101,18 +123,18 @@ module.exports = merge(BaseConfig, {
             // 配置自定义缓存过期。
             expiration: {
               maxEntries: 5,
-              maxAgeSeconds: 60,
+              maxAgeSeconds: 60
             },
             // 配置background sync.
             backgroundSync: {
               name: 'factory-queue-name',
               options: {
-                maxRetentionTime: 60 * 60,
-              },
+                maxRetentionTime: 60 * 60
+              }
             },
             // 配置哪些response是可缓存的。
             cacheableResponse: {
-              statuses: [0, 200],
+              statuses: [0, 200]
               // headers: { 'x-test': 'true' }
             },
             // 配置广播缓存更新插件。
@@ -124,29 +146,32 @@ module.exports = merge(BaseConfig, {
               {
                 cacheDidUpdate: () => {
                   /* 自定义插件代码 */
-                },
-              },
+                }
+              }
             ],
             // matchOptions 和 fetchOptions 用于配置 handler.
             fetchOptions: {
-              mode: 'no-cors',
+              mode: 'no-cors'
             },
             matchOptions: {
-              ignoreSearch: true,
-            },
-          },
+              ignoreSearch: true
+            }
+          }
         },
         {
           urlPattern: /.*\.[html|css|png|jpg]/, // 匹配文件
-          handler: 'StaleWhileRevalidate', // 网络优先
-        },
-      ],
+          handler: 'StaleWhileRevalidate' // 网络优先
+        }
+      ]
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html', // 生成的html存放路径，相对于 output.path
       template: './public/index.html', // html模板路径
       hash: false, // 防止缓存，在引入的文件后面加hash (PWA就是要缓存，这里设置为false)
       inject: true, // 是否将js放在body的末尾
+      script: `
+        <script src="https://gw.alipayobjects.com/os/lib/react/18.2.0/umd/react.production.min.js"></script>
+        <script src="https://gw.alipayobjects.com/os/lib/react-dom/18.2.0/umd/react-dom.production.min.js"></script>`,
       // 正式环境，把注册service-worker的代码加入到index.html中
       registerServiceWorker: `<script>
         if ("serviceWorker" in navigator) {
@@ -159,7 +184,7 @@ module.exports = merge(BaseConfig, {
             });
           });
         }
-      </script>`,
-    }),
-  ],
+      </script>`
+    })
+  ]
 })

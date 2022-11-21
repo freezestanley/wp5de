@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "analyzer": "cross-env NODE_ENV=analyzer webpack -c ./config/ana.config.js",
+    "start": "npm run dev",
     "prd": "cross-env NODE_ENV=production webpack -c ./config/prd.config.js",
     "dev": "cross-env NODE_ENV=development webpack serve --color -c ./config/dev.config.js",
+    "serve": "serve dist -C -l 9900",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
@@ -31,6 +33,7 @@
     "css-minimizer-webpack-plugin": "^4.2.2",
     "dayjs": "^1.11.6",
     "eslint": "^8.27.0",
+    "eslint-plugin-react": "^7.31.10",
     "eslint-webpack-plugin": "^3.2.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^8.0.1",
@@ -45,6 +48,7 @@
     "react-router-dom": "^6.4.3",
     "style-loader": "^3.3.1",
     "stylelint": "^14.14.1",
+    "stylelint-config-recommended": "^9.0.0",
     "stylelint-webpack-plugin": "^3.3.0",
     "terser-webpack-plugin": "^5.3.6",
     "thread-loader": "^3.0.4",
@@ -60,9 +64,21 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "ahooks": "^3.7.2",
     "antd": "^4.24.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss-less": "^6.0.0",
+    "postcss-preset-env": "^7.8.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-order": "^5.0.0",
+    "stylelint-prettier": "^2.0.0"
   },
   "lint-staged": {
     "src/**/*.{js,ts,jsx,tsx}": [

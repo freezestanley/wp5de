@@ -11,11 +11,13 @@
     <!-- <link rel="dns-prefetch" href="//unpkg.com/" /> -->
     <meta http-equiv="x-dns-prefetch-control" content="on" />
     <title><%= htmlWebpackPlugin.options.title %></title>
-
     <%= htmlWebpackPlugin.options.scripts %>
+    <%= htmlWebpackPlugin.options.registerServiceWorker %>
+    
   </head>
 
   <body>
     <div id="app"></div>
   </body>
+  
 </html>
