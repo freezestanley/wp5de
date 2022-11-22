@@ -51,11 +51,11 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error', // 检查 Hook 的规则
     'react-hooks/exhaustive-deps': 'off',
     'react/prop-types': 0,
-    'react/no-unknown-property':'off',
+    'react/no-unknown-property': 'off',
     '@typescript-eslint/explicit-function-return-type': 0,
     //{ "allowTypedFunctionExpressions": false }
     'prettier/prettier': [
-      "warn",
+      'warn',
       {
         useTabs: false,
         proseWrap: 'preserve',
@@ -75,7 +75,7 @@ module.exports = {
     'babel/semi': 0,
     'babel/no-unused-expressions': 0,
     'babel/valid-typeof': 1,
-    "react/display-name":0
+    'react/display-name': 0
   },
   settings: {
     'import/resolver': {

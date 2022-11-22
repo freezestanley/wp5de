@@ -4,7 +4,7 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-18 17:13:20
+ * @LastEditTime: 2022-11-22 16:57:45
  */
 const { merge } = require('webpack-merge')
 const BaseConfig = require('./base.config')
@@ -86,7 +86,12 @@ module.exports = merge(BaseConfig, {
         }
       }),
       new CssMinimizerPlugin()
-    ]
+    ],
+    splitChunks: {
+      chunks: 'all',
+      minSize: 100000,
+      maxSize: 500000
+    }
   },
   plugins: [
     new CleanWebpackPlugin(),

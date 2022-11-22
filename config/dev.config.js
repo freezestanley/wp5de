@@ -4,7 +4,7 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-18 17:08:51
+ * @LastEditTime: 2022-11-22 15:12:03
  */
 const { merge } = require('webpack-merge')
 const BaseConfig = require('./base.config')
@@ -55,13 +55,16 @@ module.exports = merge(BaseConfig, {
     client: {
       reconnect: true
     },
-    https: {
-      key: fs.readFileSync(
-        path.resolve(__dirname, '../__mocks__/https/127.0.0.1+1-key.pem')
-      ),
-      cert: fs.readFileSync(
-        path.resolve(__dirname, '../__mocks__/https/127.0.0.1+1.pem')
-      )
+    server: {
+      type: 'https',
+      options: {
+        key: fs.readFileSync(
+          path.resolve(__dirname, '../__mocks__/https/127.0.0.1+1-key.pem')
+        ),
+        cert: fs.readFileSync(
+          path.resolve(__dirname, '../__mocks__/https/127.0.0.1+1.pem')
+        )
+      }
     }
   },
   plugins: [

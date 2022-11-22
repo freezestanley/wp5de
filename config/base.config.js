@@ -4,7 +4,7 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-07 11:00:09
+ * @LastEditTime: 2022-11-21 16:23:58
  */
 const CopyPlugin = require('copy-webpack-plugin')
 const webpackbar = require('webpackbar') // 进度条
@@ -18,7 +18,12 @@ const PUBLIC_PATH = '/' // 基础路径
 module.exports = {
   entry: {
     app: {
-      import: './src/index.tsx'
+      import: './src/index.tsx',
+      dependOn: ['router']
+    },
+    router: {
+      import: ['ahooks', 'react-router-dom'], //'prop-types'
+      runtime: 'runtime'
     }
   },
   output: {
