@@ -4,7 +4,7 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-21 16:23:58
+ * @LastEditTime: 2022-11-22 19:53:54
  */
 const CopyPlugin = require('copy-webpack-plugin')
 const webpackbar = require('webpackbar') // 进度条
@@ -33,7 +33,6 @@ module.exports = {
     chunkFilename: 'js/[name].chunk.js',
     assetModuleFilename: 'images/[name]-[contenthash:4][ext][query]' // 设置静态文件输入目录
   },
-  devtool: 'eval-source-map', // 报错的时候在控制台输出哪一行报错
   optimization: {
     splitChunks: {
       chunks: 'all'

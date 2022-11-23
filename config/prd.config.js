@@ -4,7 +4,7 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-22 16:57:45
+ * @LastEditTime: 2022-11-23 11:07:23
  */
 const { merge } = require('webpack-merge')
 const BaseConfig = require('./base.config')
@@ -22,7 +22,6 @@ module.exports = merge(BaseConfig, {
   cache: {
     type: 'filesystem' // 使用文件缓存
   },
-  // devtool: 'eval-source-map',
   stats: {
     children: false // 不输出子模块的打包信息
   },
@@ -74,6 +73,7 @@ module.exports = merge(BaseConfig, {
     minimize: true,
     minimizer: [
       new TerserPlugin({
+        extractComments: 'all',
         parallel: true, // 多线程并行构建
         terserOptions: {
           // https://github.com/terser/terser#minify-options
@@ -89,7 +89,7 @@ module.exports = merge(BaseConfig, {
     ],
     splitChunks: {
       chunks: 'all',
-      minSize: 100000,
+      minSize: 300000,
       maxSize: 500000
     }
   },
