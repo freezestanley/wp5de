@@ -4,12 +4,62 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-21 16:22:40
+ * @LastEditTime: 2022-11-25 16:16:49
  */
 import React, { useId, useState } from 'react'
-import { Button, Input, DatePicker } from 'antd'
 import { useRequest } from 'ahooks'
 import { StepBackwardOutlined } from '@ant-design/icons'
+import create from 'zustand'
+import { createForm } from '@formily/core'
+import { FormProvider, FormConsumer, Field } from '@formily/react'
+import {
+  FormItem,
+  DatePicker,
+  FormLayout,
+  Input,
+  FormButtonGroup,
+  Submit
+} from '@formily/antd'
+
+const form = createForm()
+const FormEle = () => {
+  return (
+    <FormProvider form={form}>
+      <FormLayout layout="vertical">
+        <Field
+          name="input"
+          title="输入框"
+          required
+          initialValue="Hello world"
+          decorator={[FormItem]}
+          component={[Input]}
+        />
+      </FormLayout>
+      <FormConsumer>
+        {() => (
+          <div
+            style={{
+              marginBottom: 20,
+              padding: 5,
+              border: '1px dashed #666'
+            }}
+          >
+            实时响应：{form.values.input}
+          </div>
+        )}
+      </FormConsumer>
+      <FormButtonGroup>
+        <Submit onSubmit={console.log}>提交</Submit>
+      </FormButtonGroup>
+    </FormProvider>
+  )
+}
+
+const useBearStore = create((set) => ({
+  bears: 0,
+  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 })
+}))
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function changeUsername(username: string): Promise<{ success: boolean }> {
@@ -33,15 +83,14 @@ const Main = () => {
       }
     }
   })
+  const bears = useBearStore((state) => state.bears)
   return (
     <>
-      <div>a: {a}</div>
-      <div>b: {b}</div>
-      <div>c: {c}</div>
+      <h1>{bears} around here ...</h1>
       <DatePicker />
-      <Button type="primary">click ok</Button>
       <Input />
       <StepBackwardOutlined />
+      <FormEle />
     </>
   )
 }
