@@ -4,7 +4,7 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-09-04 08:59:10
+ * @LastEditTime: 2022-11-25 17:59:19
  */
 declare module '*.less' {
   const classes: {
@@ -28,4 +28,13 @@ declare module '*.scss' {
   }
   export default classes
   declare module '*.scss'
+}
+
+declare module 'moment' {
+  import { Dayjs } from 'dayjs'
+  namespace moment {
+    type Moment = Dayjs
+  }
+  export = moment
+  export as namespace moment
 }

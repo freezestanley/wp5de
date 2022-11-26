@@ -4,7 +4,7 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-25 16:28:31
+ * @LastEditTime: 2022-11-26 22:07:07
  */
 const CopyPlugin = require('copy-webpack-plugin')
 const webpackbar = require('webpackbar') // 进度条
@@ -12,6 +12,7 @@ const EncodingPlugin = require('webpack-encoding-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const EslintWebpackPlugin = require('eslint-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 
 const path = require('path')
 const PUBLIC_PATH = '/' // 基础路径
