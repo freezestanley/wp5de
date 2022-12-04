@@ -4,7 +4,7 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-18 00:25:06
+ * @LastEditTime: 2022-12-04 22:48:30
  */
 import React from 'react'
 import { createRoot } from 'react-dom/client'
@@ -19,6 +19,7 @@ const rootNode = () => (
   </BrowserRouter>
 )
 // ReactDom.render(<Application />, app)
+// uiuiuiuiuiuiu
 const root = createRoot(app!)
 
 root.render(<React.StrictMode>{rootNode()}</React.StrictMode>)
