@@ -1,0 +1,6 @@
+[submodule "packages/subfooter"]
+	path = packages/subfooter
+	url = https://github.com/freezestanley/subfooter.git
+[submodule "packages/subheader"]
+	path = packages/subheader
+	url = https://github.com/freezestanley/subheader.git

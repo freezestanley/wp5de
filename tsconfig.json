@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "target": "ESNext",
+    "removeComments": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strict": true,
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    "useDefineForClassFields": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "dom.iterable", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "typeRoots": ["@types", "./node_modules/@types"],
+    "paths": {
+      "@/*": ["../src/*"],
+      "@P/*": ["../src/Pages/*"],
+      "@A/*": ["../src/Api/*"],
+      "@T/*": ["../src/Theme/*"],
+      "@TB/*": ["../src/Toolbox/*"]
+    },
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": false
+  },
+  "include": [
+    "src",
+    "@types/index.d.ts",
+    "@types/definition.d.ts",
+    "__test__/Login/index.test.tsx",
+    "__test__/Team/index.test.tsx"
+  ],
+  "exclude": ["node_modules", "config/*"]
+}
