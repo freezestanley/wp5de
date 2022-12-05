@@ -5,7 +5,8 @@
   "main": "index.js",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "."
   ],
   "engines": {
     "node": ">16.x"
@@ -97,6 +98,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
+    "@fl/footer": "^1.0.0",
+    "@fl/header": "^1.0.0",
     "@formily/antd": "^2.2.12",
     "@formily/core": "^2.2.12",
     "@formily/react": "^2.2.12",
