@@ -4,7 +4,7 @@
  * @Author:
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-12-06 13:34:22
+ * @LastEditTime: 2022-12-06 20:35:18
  */
 import React, { useId, useState } from 'react'
 import { useRequest } from 'ahooks'
@@ -22,15 +22,13 @@ import {
   Submit
 } from '@formily/antd'
 
-import Footer from '@fl/footer'
-import Header from '@fl/header'
+import * as Footer from '@fl/footer'
 
 const form = createForm()
 const FormEle = () => {
   return (
     <>
       <Footer />
-      <Header />
       <FormProvider form={form}>
         <FormLayout layout="vertical">
           <Field
