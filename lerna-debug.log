@@ -1,13 +1,21 @@
 0 silly argv {
-0 silly argv   _: [ 'add' ],
-0 silly argv   globs: [ '.' ],
+0 silly argv   _: [ 'import' ],
 0 silly argv   lernaVersion: '6.1.0',
 0 silly argv   '$0': '../../../Library/pnpm/global/5/node_modules/lerna/cli.js',
-0 silly argv   pkg: 'formilydemo'
+0 silly argv   dir: 'packages'
 0 silly argv }
 1 notice cli v6.1.0
 2 verbose rootPath /Users/xuxiang/Documents/work/formilydemo
-3 error HttpErrorGeneral: 404 Not Found - GET https://registry.npmjs.org/formilydemo - Not found
-3 error     at /Users/xuxiang/Library/pnpm/global/5/.pnpm/npm-registry-fetch@13.3.1/node_modules/npm-registry-fetch/lib/check-response.js:95:15
-3 error     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-3 error     at async RegistryFetcher.packument (/Users/xuxiang/Library/pnpm/global/5/.pnpm/pacote@13.6.2/node_modules/pacote/lib/registry.js:92:19)
+3 error Error: Cannot find module '/Users/xuxiang/Documents/work/formilydemo/packages/package.json'
+3 error Require stack:
+3 error - /Users/xuxiang/Documents/work/formilydemo/node_modules/@lerna/import/index.js
+3 error - /Users/xuxiang/Documents/work/formilydemo/node_modules/@lerna/import/command.js
+3 error - /Users/xuxiang/Documents/work/formilydemo/node_modules/lerna/index.js
+3 error - /Users/xuxiang/Documents/work/formilydemo/node_modules/lerna/cli.js
+3 error - /Users/xuxiang/Library/pnpm/global/5/.pnpm/import-local@3.1.0/node_modules/import-local/index.js
+3 error - /Users/xuxiang/Library/pnpm/global/5/.pnpm/lerna@6.1.0/node_modules/lerna/cli.js
+3 error     at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+3 error     at Module._load (node:internal/modules/cjs/loader:780:27)
+3 error     at Module.require (node:internal/modules/cjs/loader:1005:19)
+3 error     at require (node:internal/modules/cjs/helpers:102:18)
+3 error     at ImportCommand.initialize (/Users/xuxiang/Documents/work/formilydemo/node_modules/@lerna/import/index.js:57:25)
