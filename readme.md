@@ -4,7 +4,7 @@
  * @Author: 
  * @Data: Do not edit
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-12-04 21:13:03
+ * @LastEditTime: 2022-12-06 14:15:07
 -->
 # antd4.24.3 + ahooks + zustand + webpack5
 
@@ -20,14 +20,21 @@ git clone --recurse-submodules
 当子packages变化
 先到子packages提交
 然后主项目
+
+```
+git submodule update 更新子模块的代码
+Submodule path 'packages/subfooter': checked out '23b62a66dc5b3ddcf08598f6090fd68f8f79065e' //牵出的特殊版本
+Submodule path 'packages/subheader': checked out '77f8a85280c13cd8dcf6ec162be09f27e90d488b'
+```
+git submodule foreach 'git pull origin master'
+```
 ```
 git submodule update
 ```
 
-git submodule update 更新子模块的代码
-
 ```
-git submodule foreach 'git pull origin master'
+git branch -a
+* (HEAD detached from 77f8a85)
 ```
 
 可知在不同场景下子模块的更新方式如下：
